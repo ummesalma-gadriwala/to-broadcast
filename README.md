@@ -1,6 +1,6 @@
 # TOBroadcast
 
-**TODO: Add description**
+**Simulating the totally ordered broadcast functionality for asynchronous point-to-point message passing. The implementation includes keeping messages that are not yet ready to be to-bcast-received in a pending set, keeping track of timestamp estimates in ts and sending ts-up messages when needed.**
 
 ## Installation
 
@@ -14,8 +14,3 @@ def deps do
   ]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/to_broadcast](https://hexdocs.pm/to_broadcast).
-

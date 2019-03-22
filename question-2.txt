@@ -1,0 +1,3 @@
+Question 2:
+
+It is impossible because if n-1 processes can crash then it is possible for some message to be stuck in the pending queue of the nth process. For a message sent by process p_j to be not stuck in the pending set of p_i, it needs to have the smallest timestamp of all messages sent by p_j. Furthermore, the timestamp needs to be less than or equal to ts[k] for all k. If a process, p_k crashes and p_i does not receive a ts_up message from p_k, the it is possible that the message timestamp is always greater than p_i's ts[k]. Thus the message will always remain stuck in the pending set of p_i.

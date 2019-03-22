@@ -47,8 +47,6 @@ defmodule TOBroadcast do
                                   [:pending, state.me],
                                   fn msgList -> msgList ++ [{msg, tsAti, state.me}] end)
                 for participant <- state.participants do
-                    # participant here is a string, will this work?
-                    # string to atom required?
                     pid = :global.whereis_name(participant)
                     send(pid, {:bc_msg, msg, tsAti, state.me})
                 end
@@ -74,9 +72,7 @@ defmodule TOBroadcast do
                 # IO.puts "in bc msg"
                 # broadcast message carrying msg, timestamp from origin_name
                 cond do
-                    origin_name == state.me -> 
-                        # IO.puts "here?"
-                        state
+                    origin_name == state.me -> state
                     origin_name != state.me ->
                         # ts[j] = T
                         state = update_in(state, 
@@ -176,14 +172,14 @@ defmodule TOBroadcast do
 end
 
 
-p1 = TOBroadcast.start("p1", ["p1","p2","p3","p4"])
-p2 = TOBroadcast.start("p2", ["p1","p2","p3","p4"])
-p3 = TOBroadcast.start("p3", ["p1","p2","p3","p4"])
-p4 = TOBroadcast.start("p4", ["p1","p2","p3","p4"])
-TOBroadcast.bc_send("Hello World!","p2")
-:timer.sleep(200)
-TOBroadcast.bc_send("Hello World!","p3")
-:timer.sleep(200)
-TOBroadcast.bc_send("Hello World again!","p2")
-:timer.sleep(200)
-TOBroadcast.bc_send("Hello World!","p1")
+# p1 = TOBroadcast.start("p1", ["p1","p2","p3","p4"])
+# p2 = TOBroadcast.start("p2", ["p1","p2","p3","p4"])
+# p3 = TOBroadcast.start("p3", ["p1","p2","p3","p4"])
+# p4 = TOBroadcast.start("p4", ["p1","p2","p3","p4"])
+# TOBroadcast.bc_send("Hello World again again!","p2")
+# :timer.sleep(200)
+# TOBroadcast.bc_send("Hello World!","p3")
+# :timer.sleep(200)
+# TOBroadcast.bc_send("Hello World again!","p2")
+# :timer.sleep(200)
+# TOBroadcast.bc_send("Hello World!","p1")
